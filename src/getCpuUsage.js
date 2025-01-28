@@ -7,12 +7,12 @@ async function getCpuUsage(req) {
 
     const currentTime = new Date();
 
-    const startTime = currentTime.setDate(currentTime.getDate() + periodDays);
+    const endTime = new Date(currentTime.getTime() + periodDays * 24 * 60 * 60 * 1000);
 
     const data = await getMetricDataFromCloudWatch(
         instanceId,
-        startTime,
         currentTime,
+        endTime,
         period
     );
 
