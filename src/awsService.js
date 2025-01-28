@@ -12,7 +12,7 @@ const awsConfig = {
 const cloudWatchClient = new CloudWatchClient(awsConfig);
 const ec2Client = new EC2Client(awsConfig);
 
-async function getInstanceIdFromIP(ipAddress) {
+async function getInstanceIdForIPAddress(ipAddress) {
     const params = {
         Filters: [
             {
@@ -76,4 +76,4 @@ async function getMetricDataFromCloudWatch(instanceId, startTime, endTime, perio
     }
 }
 
-module.exports = { getInstanceIdFromIP, getMetricDataFromCloudWatch };
+module.exports = { getInstanceIdForIPAddress, getMetricDataFromCloudWatch };
