@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 async function main() {
 	app.get('/cpu-usage', async (req, res) => {
 		let ret = { status: 200, data: { success: true } };
-		
+
 		const validateRes = validateRequestQuery(req);
 		if (!validateRes.success) {
 			res.status(400).send(validateRes);
@@ -45,3 +45,5 @@ async function main() {
 }
 
 main();
+
+module.exports = app;
