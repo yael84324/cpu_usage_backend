@@ -1,14 +1,18 @@
 const { getMetricDataFromCloudWatch, getInstanceIdFromIP } = require('./awsService');
 
 async function getCpuUsage(req) {
-    const { ipAddress, startTime, endTime, period } = req.query;
+    const { ipAddress, periodDays, period } = req.query;
     
     const instanceId = await getInstanceIdFromIP(ipAddress);
 
+    const currentTime = new Date();
+
+    const startTime = currentTime.setDate(currentTime.getDate() + periodDays);
+
     const data = await getMetricDataFromCloudWatch(
         instanceId,
-        new Date(startTime),
-        new Date(endTime),
+        startTime,
+        currentTime,
         period
     );
 
